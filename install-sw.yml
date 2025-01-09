@@ -16,10 +16,11 @@
 - name: Populate variables
   hosts: dbasm
   tasks:
-  - include_role:
+    - include_role:
       name: common
       tasks_from: populate-vars.yml
   tags: populate-vars
+
 - hosts: dbasm
   remote_user: "{{ grid_user }}"
   become: yes
@@ -31,10 +32,10 @@
         fail_msg: "You must update Ansible to at least 2.8 to use these playbooks"
         success_msg: "Ansible version is {{ ansible_version.full }}, continuing"
   roles:
-   - role: gi-setup
-     when:
-       - install_gi|bool
-       - cluster_type in ("NONE", "DG")
+    - role: gi-setup
+      when:
+        - install_gi|bool
+        - cluster_type in ("NONE", "DG")
   tags: gi-setup
 
 - hosts: dbasm
@@ -48,10 +49,10 @@
         fail_msg: "You must update Ansible to at least 2.8 to use these playbooks"
         success_msg: "Ansible version is {{ ansible_version.full }}, continuing"
   roles:
-   - role: rdbms-setup
-     when:
-       - install_rdbms|bool
-       - cluster_type in ("NONE", "DG")
+    - role: rdbms-setup
+      when:
+        - install_rdbms|bool
+        - cluster_type in ("NONE", "DG")
   tags: rdbms-setup
 
 

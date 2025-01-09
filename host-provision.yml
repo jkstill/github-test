@@ -29,7 +29,7 @@
 - name: Create private public key pair locally
   hosts: localhost
   tasks:
-  - include_role:
+    - include_role:
       name: host-provision
       tasks_from: ssh-keygen.yml
   tags: host-provision
@@ -50,7 +50,7 @@
         fail_msg: "You must update Ansible to at least 2.8 to use these playbooks"
         success_msg: "Ansible version is {{ ansible_version.full }}, continuing"
   tasks:
-  - include_role:
+    - include_role:
       name: host-provision
       tasks_from: user-setup.yml
   remote_user: "{{ firsttime_connect_user }}"
@@ -64,7 +64,7 @@
     ansible_ssh_extra_args: '-o IdentityAgent=no'
   become: yes
   tasks:
-  - include_role:
+    - include_role:
       name: host-provision
       tasks_from: config-tasks.yml
   remote_user: "{{ instance_ssh_user }}"
@@ -80,10 +80,10 @@
     ansible_ssh_extra_args: '-o IdentityAgent=no'
   become: no
   tasks:
-  - include_role:
+    - include_role:
       name: host-provision
       tasks_from: proxy.yml
-    when: proxy_setup|bool
+      when: proxy_setup|bool
   remote_user: "{{ instance_ssh_user }}"
   tags: host-provision
 
@@ -95,10 +95,10 @@
     ansible_ssh_extra_args: '-o IdentityAgent=no'
   become: yes
   tasks:
-  - include_role:
+    - include_role:
       name: host-provision
       tasks_from: rhel-config-tasks.yml
-    when:
-      - ansible_distribution == 'RedHat'
+      when:
+        - ansible_distribution == 'RedHat'
   remote_user: "{{ instance_ssh_user }}"
   tags: host-provision
