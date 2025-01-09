@@ -1,0 +1,58 @@
+
+# https://yamllint.readthedocs.io/en/latest/rules.html#module-yamllint.rules.braces
+
+extends: default
+
+rules:
+
+  braces:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    min-spaces-inside-empty: -1
+    max-spaces-inside-empty: -1
+
+  brackets:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    min-spaces-inside-empty: -1
+    max-spaces-inside-empty: -1
+
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 2
+
+  # refers to comms spacing
+  # commas may be lined up for readability
+  commas: disable
+
+  comments:
+    require-starting-space: false
+    ignore-shebangs: true
+    min-spaces-from-content: 0
+
+  # maybe not tidy, but will not break anything
+  comments-indentation: disable
+
+  # some lines are very long in sw catalog file
+  # could be a 
+  line-length:
+    max: 200
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+    level: warning
+
+  trailing-spaces: disable
+
+  # allow yes/no for boolean values
+  truthy: disable
+
+  # do not require the --- document start marker
+  document-start: disable
+
+  empty-lines:
+    max: 2
+    max-start: 1
+    max-end: 1
+
